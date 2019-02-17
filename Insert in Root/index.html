@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Blogging Platform</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<script src="index.js"></script>
+</head>
+
+<body>
+	<section class = "site-main">
+		<section id ="mainbar" class = "headnav">	
+			<header>
+				<svg height="60" width="300">
+					<a xlink:href="#">
+						<text fill="black" font-size="30" x="4" y="40">Blogging</text>
+					</a>
+				Sorry, your browser does not support inline SVG.
+				</svg>
+				<section class = "head">
+					<form id="sf">
+						<input type="search" placeholder="Search">
+					</form>
+					<button id = "topbutton">Get Started</button>
+				</section>
+			</header>
+			<nav id ="navbar">
+				<ul>
+					<li><a href="#" class = "active">HOME</a></li>
+					<li class = "nav-item"><a href="#">CULTURE</a></li>
+					<li class = "nav-item"><a href="#">TECH</a></li>
+					<li class = "nav-item"><a href="#">STARTUPS</a></li>
+					<li class = "nav-item"><a href="#">SELF</a></li>
+					<li class = "nav-item"><a href="#">POLITICS</a></li>
+					<li class = "nav-item"><a href="#">DESIGN</a></li>
+					<li class = "nav-item"><a href="#">HEALTH</a></li>
+					<li class = "nav-item"><a href="#">SCIENCE</a></li>
+					<li class = "nav-item"><a href="#">POPULAR</a></li>
+					<li class = "nav-item"><a href="#">COLLECTIONS</a></li>
+					<li class = "nav-item"><a href="#">MORE</a></li>
+				</ul>
+			</nav>
+			<!-- <script>
+				window.onscroll = function() {myFunction();};
+				var mainbar = document.getElementById("mainbar");
+				var navbar = document.getElementById("navbar");
+				var sticky = navbar.offsetTop;
+
+				function myFunction() {
+				  console.log('Hello'); 	
+				  if (window.pageYOffset >= sticky) 
+				  {
+					mainbar.classList.add("fixhead");
+					navbar.classList.add("sticky");
+				  } 
+				  else 
+				  {
+					mainbar.classList.remove("fixhead");
+					navbar.classList.remove("sticky");
+				  }
+				}
+			</script> -->
+		</section>
+		<div id="myModal" class="modal">
+		    <div class="form-box">
+		    	<div class="close"></div>
+		    	<div class ="tab">
+		    	   <button class="tablinks" onclick="opentab(event, 'Login',0)" id="defaultOpen">Login</button>
+  				   <button class="tablinks" onclick="opentab(event, 'Register',0)">Register</button>
+				</div>
+			      
+			    <div id="Login" class="tabcontent">
+				      <form action="LoginController" id="login-form" method="post">
+				          <div class="form-group">
+				            <label class="label-control">
+				              <span class="label-text">Email</span>
+				            </label>
+				            <input type="email" name="email" class="form-control" />
+				          </div>
+				          <div class="form-group">
+				            <label class="label-control">
+				              <span class="label-text">Password</span>
+				            </label> 
+				            <input type="password" name="password" class="form-control" />
+				          </div>
+				          <input type="submit" value="Login" class="btn" />
+				          <p class="text-p">Don't have an account? <a onclick="opentab(event, 'Register',1)" style="cursor: pointer;">Sign up</a> </p>
+				      </form>
+			     </div>
+
+
+			     <div id="Register" class="tabcontent">
+				      <form action="RegisterController" id="register-form" method="post">
+				          
+				          <div class="form-group">
+				            <label class="label-control">
+				              <span class="label-text">Name</span>
+				            </label>
+				            <input type="text" name="name" class="form-control" />
+				          </div>
+
+				          <div class="form-group">
+				            <label class="label-control">
+				              <span class="label-text">Email</span>
+				            </label>
+				            <input type="email" name="email" class="form-control" />
+				          </div>
+
+				          <div class="form-group">
+				            <label class="label-control">
+				              <span class="label-text">Password</span>
+				            </label> 
+				            <input id = "password" type="password" name="password" class="form-control" />
+				          </div>
+
+				          <div class="form-group">
+				            <label class="label-control">
+				              <span class="label-text">Confirm Password</span>
+				            </label> 
+				            <input type="password" name="confirm_password" class="form-control" />
+				          </div>
+
+				          <input type="submit" value="Register" class="btn" />
+				      </form>
+			     </div>
+			     
+			     <script>
+					function opentab(evt, tabName, action) 
+					{
+					  var tabcontent, tablinks;
+					  tabcontent = document.getElementsByClassName("tabcontent");
+					  tabcontent[0].style.display = "none";
+					  tabcontent[1].style.display = "none";
+					  
+					  tablinks = document.getElementsByClassName("tablinks"); 
+					  tablinks[0].className = tablinks[0].className.replace(" active", "");
+					  tablinks[1].className = tablinks[1].className.replace(" active", "");
+					  
+					  document.getElementById(tabName).style.display = "block";
+					  if(action == 0)
+					  	evt.currentTarget.className += " active";
+					  else
+					  	tablinks[1].className += " active";
+					}
+					// Get the element with id="defaultOpen" and click on it
+					document.getElementById("defaultOpen").click();
+					</script>
+		    </div>
+		    </div>	   
+		    <script type="text/javascript">
+		      $(window).on('load',function(){
+		        $('.form-group input').on('focus blur', function (e) {
+		            $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
+		        }).trigger('blur');
+		      });
+
+		      $(document).ready(function () {
+		          $('#login-form').validate({
+		              rules: {
+		                  email: {
+		                      required: true,
+		                      email: true
+		                  },
+		                  password: {
+		                      required: true
+		                  }
+		              }
+		              // submitHandler: function(form) {
+		              //   alert('valid form submitted');  
+		              // }
+		          });
+		      });
+
+		      jQuery.validator.addMethod("accept", function(value, element, param) {
+  					return value.match(new RegExp("^" + param + "$"));
+				});
+		      $(document).ready(function () {
+		          $('#register-form').validate({
+		              rules: {
+		              	  name: {
+		              	  	required:true,
+		              	  	accept: "[a-zA-Z]+"
+		              	  },
+		                  email: {
+		                      required: true,
+		                      email: true
+		                  },
+		                  password: {
+		                      required: true,
+		                      minlength: 6
+		                  },
+		                  confirm_password: {
+		                  	required: true,
+		                  	equalTo: "#password"
+		                  }
+		              },
+		              messages: {
+		              	name : {
+		              		accept: "Enter a valid name"
+		              	},
+		              	password: {
+		              		minlength : "At least 6 characters long"
+		              	},
+		              	confirm_password: {
+		              		equalTo: "Password doesn't match"
+		              	}
+		              },
+		              submitHandler: function(form) {
+		                alert('valid form submitted');  
+		              }
+		          });
+		      });
+		    </script>
+		</div>
+
+		<script>
+			// Get the modal
+			var modal = document.getElementById('myModal');
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("topbutton");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal 
+			btn.onclick = function() {
+			  modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+			    modal.style.display = "none";
+			  }
+			}
+		</script>
+
+		<div class = "headnav" style = "margin-top:124px;position: relative;z-index: 99998;"></div>
+		<div class = "home-container" style="height:100%;">
+			<section class = "hero-container">
+				<div class = "large-card">
+					<div class = "hero-post">
+						<a href="#" class="longbackimg" style="background-image: url(https://cdn-images-1.medium.com/focal/520/189/57/55/1*WTOj6moe4LR-WWA8OgjvNQ.jpeg); background-position: 57% 55%;"></a>
+						<div class ="post-content">
+							<div class = "post-title">
+								<a href = "#"><h3 class="post-heading">The Real Value of Facebook</h3></a>
+								<div class="post-exerpt">We can exploit the platform’s failings to reclaim our humanity</div>
+							</div>
+							<div class = "hero-line">
+								<div class = "post-meta" style="display: inline;">Douglas Rushkoff</div>	
+								<time style="font-size:12px;display: inline-block;margin-top:3px">Jan 9</time>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class = "small-card-container">
+					<div class = "small-card">
+						<div class = "hero-post" style="height:100.8px;display:flex;">
+							<a href="#" class="smallbackimg" style="background-image: url(https://cdn-images-1.medium.com/fit/c/125/125/1*PFRH5UvNLtEOrIeHJGJE7w.jpeg); background-position: 50% 50% ;"></a>
+							<div class ="spost-content">
+								<div class = "spost-title">
+									<a href = "#"><h3 class="spost-heading">No, Evolution Did Not Make Us Into Selfish Capitalists</h3></a>	
+								</div>
+								<div class = "hero-line">
+									<div class = "post-meta" style="display: inline;">Douglas Rushkoff</div>	
+									<time style="font-size:12px;display: inline-block;margin-top:3px">Jan 9</time>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class = "small-card">
+						<div class = "hero-post" style="height:100.8px;display:flex;">
+							<a href="#" class="smallbackimg" style="background-image: url(https://cdn-images-1.medium.com/fit/c/125/125/1*PFRH5UvNLtEOrIeHJGJE7w.jpeg); background-position: 50% 50%;"></a>
+							<div class ="spost-content">
+								<div class = "spost-title">
+									<a href = "#"><h3 class="spost-heading">No, Evolution Did Not Make Us Into Selfish Capitalists</h3></a>	
+								</div>
+								<div class = "hero-line">
+									<div class = "post-meta" style="display: inline;">Douglas Rushkoff</div>	
+									<time style="font-size:12px;display: inline-block;margin-top:3px">Jan 9</time>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class = "small-card">
+						<div class = "hero-post" style="height:100.8px;display:flex;">
+							<a href="#" class="smallbackimg" style="background-image: url(https://cdn-images-1.medium.com/fit/c/125/125/1*PFRH5UvNLtEOrIeHJGJE7w.jpeg); background-position: 50% 50%;"></a>
+							<div class ="spost-content">
+								<div class = "spost-title">
+									<a href = "#"><h3 class="spost-heading">No, Evolution Did Not Make Us Into Selfish Capitalists</h3></a>	
+								</div>
+								<div class = "hero-line">
+									<div class = "post-meta" style="display: inline;">Douglas Rushkoff</div>	
+									<time style="font-size:12px;display: inline-block;margin-top:3px">Jan 9</time>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class = "medium-card">	
+					<div class = "hero-post" style="width: 100%;">
+						<a href="#" class="mediumbackimg" style="background-image: url(https://cdn-images-1.medium.com/focal/630/278/53/29/1*S4bWCxuUsNDuOKfMtmTbKQ.jpeg); background-position: 53% 29%;"></a>
+						<div class ="mpost-content">
+							<div class = "mpost-title">
+								<a href = "#"><h3 class="mpost-heading">The Real Value of Facebook</h3></a>
+								<div class="mpost-exerpt">We can exploit the platform’s failings to reclaim our humanity</div>
+							</div>
+							<div class = "hero-line" style="padding-left: 25px;">
+								<div class = "post-meta" style="display: inline;">Douglas Rushkoff</div>	
+								<time style="font-size:12px;display: inline-block;margin-top:3px">Jan 9</time>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--Top Section Ends here-->
+			<div class="featured-link-wrapper">
+				<a class="featured-link" href="#">See all featured
+					<span>
+						<svg style="transform: translateY(-50%);fill: #03a87c;" width="19" height="19">
+							<path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd"></path>
+						</svg>
+					</span>
+				</a>
+			</div>
+			<div class="hero-divider"></div>
+			<div class = "foreground">
+				<div class="foreground-container">
+					<div class ="bigpart">
+						<!-- Categories start here-->
+						<header class ="foreheading">
+							<div class="adjust-flex">
+								<span class ="fh">
+									<a href="#" style="color: rgba(0,0,0,.84);">Featured for members</a>
+								</span>
+								<a href="#" style="display:flex;align-items:center;-webkit-box-align: center;">
+									<span style="font-weight: 400;font-size: 15px;text-transform: uppercase;">More</span>
+									<span class ="svgIcon">	
+										<svg width="19" height="19">
+											<path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd"></path>
+										</svg>
+									</span>
+								</a>
+							</div>
+						</header>
+						<!-- Each article-->
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<!-- Categories start here-->
+						<header class ="foreheading">
+							<div class="adjust-flex">
+								<span class ="fh">
+									<a href="#" style="color: rgba(0,0,0,.84);">Technology</a>
+								</span>
+								<a href="#" style="display:flex;align-items:center;-webkit-box-align: center;">
+									<span style="font-weight: 400;font-size: 15px;text-transform: uppercase;">More</span>
+									<span class ="svgIcon">	
+										<svg width="19" height="19">
+											<path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd"></path>
+										</svg>
+									</span>
+								</a>
+							</div>
+						</header>
+						<!--Each Article-->
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<header class ="foreheading">
+							<div class="adjust-flex">
+								<span class ="fh">
+									<a href="#" style="color: rgba(0,0,0,.84);">Creativity</a>
+								</span>
+								<a href="#" style="display:flex;align-items:center;-webkit-box-align: center;">
+									<span style="font-weight: 400;font-size: 15px;text-transform: uppercase;">More</span>
+									<span class ="svgIcon">	
+										<svg width="19" height="19">
+											<path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd"></path>
+										</svg>
+									</span>
+								</a>
+							</div>
+						</header>
+						<!--Each Article-->
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+						<article class="post-preview">
+							<div class="post-preview-post">
+								<a href="#" style="width: 100%;overflow: hidden;">
+									<h3 class="post-preview-heading">Live at the Alchemist’s Kitchen: ‘Moon Over Matter’ With Dr. Mark&nbsp;Filippi</h3>
+								</a>
+								<a href="#">
+									<div class ="summary">How to leverage the lunar cycle’s neurological impact for better productivity, emotional stability, and social harmony</div>
+								</a>
+								<div class="justifySpace">
+									<div class="caption">
+										<a href="#" style="color:rgba(0,0,0,.84);padding-left:25px;font-weight:600;">Douglas Rushkoff</a>
+									</div>
+									<div class="caption">
+										<time style="line-height: 1.4;display:inline-block;font-size:12px;padding-left:25px;padding-bottom:20px;">Jan 26</time>
+									</div>
+								</div>	
+							</div>
+							<div style="width: 180px;-webkit-box-flex: 0;flex: 0 0 auto;">
+								<a href="#" class="post-preview-img" style="background-image: url(https://cdn-images-1.medium.com/focal/190/195/43/39/1*eIQv0SugNG4Xe7EmhChHQw.jpeg); background-position: 43% 39%;"></a>
+							</div>
+						</article>
+					</div>
+					<!--SideBar starts here-->
+					<div class ="smallpart">
+						<aside class ="sidebar">
+							<a href="https://medium.com/topic/popular">
+								<div class="sh">
+									<h3 class="sidebar-heading">Popular on Medium</h3>
+								</div>
+							</a>
+							<ol style="padding: 32px;list-style: none;list-style-image: none;margin: 0;">
+								<li class="sidebar-li">
+									<div class="sidebar-serial">01</div>
+									<div class="sidebar-content">
+										<a href="#" style="width: 100%;flex: 0 0 auto;-webkit-box-flex: 0;overflow: hidden;">
+											<h3 class="sidebar-content-heading">As a Designer, I Refuse to Call People&nbsp;‘Users’</h3>
+										</a>
+										<div class="creditsWrapper">
+											<div class="credits">
+												<a href="#" style="color:rgba(0,0,0,.84);display:inline;">Adam Lefton</a>
+											</div>
+										</div>
+										<div class="credits">
+											<time style="line-height: 1.4;display: inline-block;font-size:12px">Jan 15</time>
+										</div>
+									</div>
+								</li>
+								<li class="sidebar-li">
+									<div class="sidebar-serial">02</div>
+									<div class="sidebar-content">
+										<a href="#" style="width: 100%;flex: 0 0 auto;-webkit-box-flex: 0;overflow: hidden;">
+											<h3 class="sidebar-content-heading">As a Designer, I Refuse to Call People&nbsp;‘Users’</h3>
+										</a>
+										<div class="creditsWrapper">
+											<div class="credits">
+												<a href="#" style="color:rgba(0,0,0,.84);display:inline;">Adam Lefton</a>
+											</div>
+										</div>
+										<div class="credits">
+											<time style="line-height: 1.4;display: inline-block;font-size:12px">Jan 15</time>
+										</div>
+									</div>
+								</li>
+								<li class="sidebar-li">
+									<div class="sidebar-serial">03</div>
+									<div class="sidebar-content">
+										<a href="#" style="width: 100%;flex: 0 0 auto;-webkit-box-flex: 0;overflow: hidden;">
+											<h3 class="sidebar-content-heading">As a Designer, I Refuse to Call People&nbsp;‘Users’</h3>
+										</a>
+										<div class="creditsWrapper">
+											<div class="credits">
+												<a href="#" style="color:rgba(0,0,0,.84);display:inline;">Adam Lefton</a>
+											</div>
+										</div>
+										<div class="credits">
+											<time style="line-height: 1.4;display: inline-block;font-size:12px">Jan 15</time>
+										</div>
+									</div>
+								</li>
+								<li class="sidebar-li">
+									<div class="sidebar-serial">04</div>
+									<div class="sidebar-content">
+										<a href="#" style="width: 100%;flex: 0 0 auto;-webkit-box-flex: 0;overflow: hidden;">
+											<h3 class="sidebar-content-heading">As a Designer, I Refuse to Call People&nbsp;‘Users’</h3>
+										</a>
+										<div class="creditsWrapper">
+											<div class="credits">
+												<a href="#" style="color:rgba(0,0,0,.84);display:inline;">Adam Lefton</a>
+											</div>
+										</div>
+										<div class="credits">
+											<time style="line-height: 1.4;display: inline-block;font-size:12px">Jan 15</time>
+										</div>
+									</div>
+								</li>
+							</ol>
+						</aside>
+							<!--SideBar Ends Here-->
+							<!-- <script>
+								var sidebar = $('.sidebar').offset().top;
+								$(window).scroll(function() {
+									var y_scroll_pos = window.pageYOffset;
+									var scroll_pos_test = sidebar;
+
+								   if (y_scroll_pos >= scroll_pos_test-60)
+								   {
+										$('.sidebar').addClass('lock-sidebar');
+								   }
+								   else
+								   {
+										$('.sidebar').removeClass('lock-sidebar');
+								   }
+								});
+							</script> -->
+					</div>
+				</div>
+			</div>
+			<!--Content Ends here-->
+			<footer>
+				<h3>Designed by Saurabh</h3>
+				<ul style="padding:0px;">
+					<li class = "nav-item"><a href="#">Help</a></li>
+					<li class = "nav-item"><a href="#">Status</a></li>
+					<li class = "nav-item"><a href="#">Privacy</a></li>
+					<li class = "nav-item"><a href="#">Terms</a></li>
+					<li class = "nav-item"><a href="#">About</a></li>
+					<li class = "nav-item"><a href="#">Sitemap</a></li>
+				</ul>
+			</footer>
+		</div>
+	</section>
+</body>
+</html>
