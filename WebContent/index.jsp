@@ -558,7 +558,7 @@
 						<aside class ="sidebar">
 							<a href="multipostLayout.jsp?topic=POPULAR">
 								<div class="sh">
-									<h3 class="sidebar-heading">Popular on Medium</h3>
+									<h3 class="sidebar-heading">Popular Articles</h3>
 								</div>
 							</a>
 							<ol style="padding: 32px;list-style: none;list-style-image: none;margin: 0;">
