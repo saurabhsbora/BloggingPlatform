@@ -45,7 +45,6 @@ CREATE TABLE `users` (
 )
 ```
 
-
 ## How To Run this application
 1. Clone this repository
 2. Configure the environment for this web application
@@ -55,9 +54,3 @@ CREATE TABLE `users` (
 ## Technology Stack
 - Frontend - HTML, CSS, JavaScript, jQuery
 - Backend - JSP, Servlet, MySQL
-
-
-
-
-
-
