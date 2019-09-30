@@ -1,5 +1,6 @@
 # BloggingPlatform
 A simple java based web application for blogging with minimalistic design inspired from a popular blogging platform [Medium](https://medium.com/).
+![Home Page](https://github.com/enthussb/BloggingPlatform/blob/master/screenshots/Home.png?raw=true)
 
 ## Functionalities
 - User Registration & Authentication
@@ -19,6 +20,32 @@ A simple java based web application for blogging with minimalistic design inspir
   - servlet-api
 - Apache Tomcat v8.5
 
+## Database Schema
+```
+CREATE TABLE `posts` (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `image` longblob,
+  `content` varchar(50000) DEFAULT NULL,
+  `authorname` varchar(35) DEFAULT NULL,
+  `category` varchar(25) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`post_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+)
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+)
+```
+
+
 ## How To Run this application
 1. Clone this repository
 2. Configure the environment for this web application
@@ -27,7 +54,9 @@ A simple java based web application for blogging with minimalistic design inspir
 
 ## Technology Stack
 - Frontend - HTML, CSS, JavaScript, jQuery
-- Backend - JSP, Servlet, MySQL 
+- Backend - JSP, Servlet, MySQL
+
+
 
 
 
