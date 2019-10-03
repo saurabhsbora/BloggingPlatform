@@ -1,7 +1,7 @@
 # BloggingPlatform
 A simple java based web application for blogging with design clone of a popular blogging platform [Medium](https://medium.com/).  
 
-![Home Page](https://github.com/enthussb/BloggingPlatform/blob/master/screenshots/Home.png?raw=true)
+![Home Page](https://raw.githubusercontent.com/enthussb/BloggingPlatform/master/screenshots/Home.png)
 
 ## Functionalities
 - User Registration & Authentication
